@@ -53,6 +53,7 @@ const babelRuntimeEntryHelpers = require.resolve(
 const babelRuntimeRegenerator = require.resolve('@babel/runtime/regenerator', {
   paths: [babelRuntimeEntry],
 });
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
@@ -608,6 +609,9 @@ module.exports = function (webpackEnv) {
             : undefined
         )
       ),
+      new WorkboxPlugin.InjectManifest({
+       swSrc:".src/service-worker.js"
+     }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       // https://github.com/facebook/create-react-app/issues/5358

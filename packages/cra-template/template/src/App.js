@@ -17,6 +17,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>
+          This app is build for PWA using workweb.
+        </p>
       </header>
     </div>
   );
